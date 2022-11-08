@@ -68,12 +68,15 @@
             <property name="checkable">
              <bool>true</bool>
             </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QLabel" name="label_5">
             <property name="text">
-             <string>Temps : 10 secondes</string>
+             <string>Temps : 5 secondes</string>
             </property>
            </widget>
           </item>
@@ -114,7 +117,7 @@
           <item>
            <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>Temps : 10 secondes</string>
+             <string>Temps : 6 secondes</string>
             </property>
            </widget>
           </item>
@@ -153,7 +156,7 @@
         <item>
          <widget class="QLabel" name="label_7">
           <property name="text">
-           <string>Temps : 10 secondes</string>
+           <string>Temps : 8 secondes</string>
           </property>
          </widget>
         </item>

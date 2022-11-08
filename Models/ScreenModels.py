@@ -81,13 +81,27 @@ class ProgramsList(QMainWindow, Screen):
 
     def program_selection_handler(self, btn_clicked):
 
-        match btn_clicked.objectName():
-            case "btn_prog1":
-                update_data("program", "programme 1")
-            case "btn_prog2":
-                update_data("program", "programme 2")
-            case "btn_prog3":
-                update_data("program", "programme 3")
+        # match btn_clicked.objectName():
+        #     case "btn_prog1":
+        #         update_data("program", "programme 1")
+        #         update_data("duration", "5000")
+        #     case "btn_prog2":
+        #         update_data("program", "programme 2")
+        #         update_data("duration", "6000")
+        #     case "btn_prog3":
+        #         update_data("program", "programme 3")
+        #         update_data("duration", "8000")
+
+        if btn_clicked.objectName() == "btn_prog1":
+            update_data("program", "programme 1")
+            update_data("duration", "5000")
+        if btn_clicked.objectName() == "btn_prog2":
+            update_data("program", "programme 2")
+            update_data("duration", "6000")
+        if btn_clicked.objectName() == "btn_prog3":
+            update_data("program", "programme 3")
+            update_data("duration", "8000")
+
 
         self.btn_start.setEnabled(True)
 
@@ -112,7 +126,6 @@ class Machining(QMainWindow, Screen):
     def program_timer(self, sec):
 
         sec += 1
-        print(sec)
         if self.stopped:
             self.stopped = False
             self.navigation('MachiningInterruption')
