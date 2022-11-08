@@ -2,6 +2,7 @@ from PyQt5 import QtCore
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QMainWindow, QWidget
 from PyQt5.uic import loadUi
+import RPi.GPIO as GPIO
 
 from utils.dataManager import update_data, get_datas
 
@@ -124,7 +125,7 @@ class Machining(QMainWindow, Screen):
         self.btn_stop.clicked.connect(self.program_stopped)
 
     def program_timer(self, sec):
-
+        GPIO.output(17, GPIO.HIGH)
         sec += 1
         if self.stopped:
             self.stopped = False
@@ -137,10 +138,12 @@ class Machining(QMainWindow, Screen):
             QTimer.singleShot(interval, lambda: self.program_timer(sec))
         else:
             self.navigation('ProgramsList')
+            GPIO.output(17, GPIO.LOW)
 
     def program_stopped(self):
         self.stopped = True
         self.navigation('MachiningInterruption')
+        GPIO.output(17, GPIO.LOW)
 
 
 class MachiningInterruption(QMainWindow, Screen):
