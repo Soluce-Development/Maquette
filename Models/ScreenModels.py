@@ -160,3 +160,14 @@ class MachiningInterruption(QMainWindow, Screen):
             QtCore.QTimer.singleShot(10, lambda: self.update_progressBar(pourcentage))
         else:
             self.navigation('ProgramsList')
+
+
+class EmergencyStop(QMainWindow, Screen):
+    """Emergency screen displays when the emergency button is pressed."""
+
+    def __init__(self):
+        super(EmergencyStop, self).__init__()
+        loadUi('./Views/EmergencyStop.ui', self)
+
+
+

@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QStackedWidget
 
-from Models.ScreenModels import Screen, StartUp, ProgramsList, Machining, MachiningInterruption
+from Models.ScreenModels import Screen, StartUp, ProgramsList, Machining, MachiningInterruption, EmergencyStop
 
 Navigator = QStackedWidget()
 
@@ -16,10 +16,14 @@ MyMachining.setObjectName("Machining")
 MyMachiningInterruption = MachiningInterruption()
 MyMachiningInterruption.setObjectName("MachiningInterruption")
 
+MyEmergencyStop = EmergencyStop()
+MyEmergencyStop.setObjectName("EmergencyStop")
+
 Navigator.addWidget(MyStartUp)
 Navigator.addWidget(MyProgramsList)
 Navigator.addWidget(MyMachining)
 Navigator.addWidget(MyMachiningInterruption)
+Navigator.addWidget(MyEmergencyStop)
 
 Screen.navigation("StartUp")
 
