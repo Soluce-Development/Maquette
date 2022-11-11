@@ -31,7 +31,7 @@ GPIO.setup(OUTPUTS, GPIO.OUT, initial=GPIO.LOW)
 
 def open_door(pin):
     """Close the door if the door is still closed."""
-    if GPIO.input(BTN_DOOR):
+    if not GPIO.input(BTN_DOOR):
         GPIO.output(LED_DOOR, GPIO.LOW)
     else:
         if not GPIO.input(SENSOR_DOOR):
@@ -59,15 +59,15 @@ def toggle_led_door(pin):
     """Turn on/off the LED_DOOR."""
     # GPIO.output(LED_DOOR, not GPIO.input(LED_DOOR))
 
-    if GPIO.input(SENSOR_DOOR):
-        GPIO.output(LED_DOOR, GPIO.LOW)
-    else:
+    if not GPIO.input(SENSOR_DOOR):
         GPIO.output(LED_DOOR, GPIO.HIGH)
+    else:
+        GPIO.output(LED_DOOR, GPIO.LOW)
 
 
 def toggle_emergency(pin):
     """Emergency"""
-    if GPIO.input(BTN_EMERGENCY):
+    if not GPIO.input(BTN_EMERGENCY):
         Screen.navigation('EmergencyStop')
     else:
         Screen.navigation('ProgramsList')
@@ -78,8 +78,8 @@ def toggle_emergency(pin):
 def add_events():
     GPIO.add_event_detect(BTN_DOOR, GPIO.BOTH, callback=open_door, bouncetime=500)
 
-    GPIO.add_event_detect(SENSOR_DOOR, GPIO.BOTH, callback=toggle_led_door, bouncetime=500)
+    GPIO.add_event_detect(SENSOR_DOOR, GPIO.BOTH, callback=toggle_led_door, bouncetime=100)
 
     GPIO.add_event_detect(BTN_EMERGENCY, GPIO.BOTH, callback=toggle_emergency, bouncetime=500)
 
-    GPIO.add_event_detect(SENSOR_PEDAL, GPIO.RISING, callback=toggle_jaw, bouncetime=1000)
+    GPIO.add_event_detect(SENSOR_PEDAL, GPIO.RISING, callback=toggle_jaw, bouncetime=100)
