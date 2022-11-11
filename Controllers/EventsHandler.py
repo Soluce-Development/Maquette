@@ -31,8 +31,12 @@ GPIO.setup(OUTPUTS, GPIO.OUT, initial=GPIO.LOW)
 
 def open_door(pin):
     """Close the door if the door is still closed."""
-    # if GPIO.input(SENSOR_DOOR):
-    GPIO.output(LED_DOOR, GPIO.LOW)
+    if GPIO.input(BTN_DOOR):
+        GPIO.output(LED_DOOR, GPIO.LOW)
+    else:
+        if not GPIO.input(SENSOR_DOOR):
+            GPIO.output(LED_DOOR, GPIO.HIGH)
+
 
 
 # def door_closed(pin):
@@ -56,9 +60,9 @@ def toggle_led_door(pin):
     # GPIO.output(LED_DOOR, not GPIO.input(LED_DOOR))
 
     if GPIO.input(SENSOR_DOOR):
-        GPIO.output(LED_DOOR, GPIO.HIGH)
-    else:
         GPIO.output(LED_DOOR, GPIO.LOW)
+    else:
+        GPIO.output(LED_DOOR, GPIO.HIGH)
 
 
 def toggle_emergency(pin):
@@ -72,7 +76,7 @@ def toggle_emergency(pin):
 # --- Add events ---
 
 def add_events():
-    GPIO.add_event_detect(BTN_DOOR, GPIO.RISING, callback=open_door, bouncetime=500)
+    GPIO.add_event_detect(BTN_DOOR, GPIO.BOTH, callback=open_door, bouncetime=500)
 
     GPIO.add_event_detect(SENSOR_DOOR, GPIO.BOTH, callback=toggle_led_door, bouncetime=500)
 
