@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QMainWindow, QWidget
 from PyQt5.uic import loadUi
 import RPi.GPIO as GPIO
 
+from Controllers.EventsHandler import LED_MACHINING
 from utils.dataManager import update_data, get_datas
 
 
@@ -125,7 +126,6 @@ class Machining(QMainWindow, Screen):
         self.btn_stop.clicked.connect(self.program_stopped)
 
     def program_timer(self, sec):
-        GPIO.output(17, GPIO.HIGH)
         sec += 1
         if self.stopped:
             self.stopped = False
@@ -136,14 +136,15 @@ class Machining(QMainWindow, Screen):
             get_datas("duration")
             interval = int(int(get_datas("duration")) / 100)
             QTimer.singleShot(interval, lambda: self.program_timer(sec))
+            GPIO.output(LED_MACHINING, GPIO.HIGH)
         else:
             self.navigation('ProgramsList')
-            GPIO.output(17, GPIO.LOW)
+            GPIO.output(LED_MACHINING, GPIO.LOW)
 
     def program_stopped(self):
         self.stopped = True
         self.navigation('MachiningInterruption')
-        GPIO.output(17, GPIO.LOW)
+        GPIO.output(LED_MACHINING, GPIO.LOW)
 
 
 class MachiningInterruption(QMainWindow, Screen):

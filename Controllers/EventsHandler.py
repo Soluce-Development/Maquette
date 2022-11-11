@@ -3,9 +3,9 @@ import RPi.GPIO as GPIO
 from Models.ScreenModels import Screen
 
 # GPIO Inputs
-SENSOR_DOOR = 13
-BTN_DOOR = 19
-BTN_EMERGENCY = 6
+SENSOR_DOOR = 6
+BTN_DOOR = 13
+BTN_EMERGENCY = 19
 SENSOR_PEDAL = 26
 
 # GPIO Outputs
