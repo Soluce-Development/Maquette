@@ -127,11 +127,16 @@ class Machining(QMainWindow, Screen):
         self.btn_stop.clicked.connect(self.program_stopped)
 
     def program_timer(self, sec):
-        sec += 1
+
+        if not GPIO.input(BTN_EMERGENCY):
+            self.navigation('EmergencyStop')
+            return
+
         if self.stopped:
             self.stopped = False
-            self.navigation('MachiningInterruption')
             return
+
+        sec += 1
         if sec <= 100:
             self.progressBar.setValue(sec)
             get_datas("duration")
