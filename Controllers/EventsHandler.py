@@ -1,18 +1,9 @@
 import RPi.GPIO as GPIO
 
+from Constants import *
 from Models.ScreenModels import Screen
 
-# GPIO Inputs
-SENSOR_DOOR = 6
-BTN_DOOR = 13
-BTN_EMERGENCY = 19
-SENSOR_PEDAL = 26
 
-# GPIO Outputs
-ACTUATOR_DOOR = 22
-ACTUATOR_JAW = 3
-LED_DOOR = 27
-LED_MACHINING = 17
 
 # Initialisation
 GPIO.setmode(GPIO.BCM)

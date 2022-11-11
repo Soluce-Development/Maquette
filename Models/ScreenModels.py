@@ -4,8 +4,9 @@ from PyQt5.QtWidgets import QMainWindow, QWidget
 from PyQt5.uic import loadUi
 import RPi.GPIO as GPIO
 
-from Controllers.EventsHandler import LED_MACHINING
 from utils.dataManager import update_data, get_datas
+
+from Constants import *
 
 
 class Screen(QWidget):
