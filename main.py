@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication
 
-from Controllers import EventsHandler
+from Controllers.EventsHandler import initial_events, add_events
 from Models.ScreenModels import MainScreen
 
 if __name__ == "__main__":
@@ -10,5 +10,6 @@ if __name__ == "__main__":
     main_screen = MainScreen()
 
     main_screen.show()
-    EventsHandler.add_events()
+    initial_events()
+    add_events()
     sys.exit(app.exec_())
