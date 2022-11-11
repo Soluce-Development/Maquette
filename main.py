@@ -1,6 +1,8 @@
 import sys
+
 from PyQt5.QtWidgets import QApplication
 
+from Constants import BTN_EMERGENCY
 from Controllers.EventsHandler import initial_events, add_events
 from Models.ScreenModels import MainScreen
 

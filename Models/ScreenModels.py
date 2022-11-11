@@ -34,8 +34,9 @@ class Screen(QWidget):
             MyMachining.text_program.setText(get_datas("program"))
             MyMachining.program_timer(0)
 
-        if Navigator.currentWidget() == MyMachiningInterruption:
-            MyMachiningInterruption.update_progressBar(0)
+        while Navigator.currentWidget() == MyMachiningInterruption:
+            if GPIO.event_detected(BTN_EMERGENCY):
+                Navigator.currentWidget().navigation('ProgramsList')
 
 
 class MainScreen(QMainWindow, Screen):
@@ -175,6 +176,10 @@ class EmergencyStop(QMainWindow, Screen):
     def __init__(self):
         super(EmergencyStop, self).__init__()
         loadUi('./Views/EmergencyStop.ui', self)
+
+    def emergency_released(self):
+        if GPIO.event_detected(BTN_EMERGENCY):
+            self.navigation('ProgramsList')
 
 
 
