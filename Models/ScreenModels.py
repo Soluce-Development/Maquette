@@ -1,11 +1,10 @@
 from PyQt5 import QtCore
-from PyQt5.QtCore import QTimer, pyqtSignal
+from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QMainWindow, QWidget
 from PyQt5.uic import loadUi
 import RPi.GPIO as GPIO
 
 from utils.dataManager import update_data, get_datas
-
 from Constants import *
 
 
