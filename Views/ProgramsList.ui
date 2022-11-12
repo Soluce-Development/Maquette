@@ -194,6 +194,10 @@
       </item>
       <item>
        <widget class="QLabel" name="text_warning">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 0, 0);
+font: italic 9pt &quot;Segoe UI&quot;;</string>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>

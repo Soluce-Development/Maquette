@@ -89,8 +89,10 @@ class ProgramsList(QMainWindow, Screen):
 
         self.btn_start.clicked.connect(self.handle_navigation)
 
+        self.program = None
+
     def handle_navigation(self):
-        if GPIO.input(BTN_EMERGENCY):
+        if self.program:
             self.navigation('Machining')
         else:
             pass
@@ -109,12 +111,15 @@ class ProgramsList(QMainWindow, Screen):
         if btn_clicked.objectName() == "btn_prog1":
             update_data("program", "programme 1")
             update_data("duration", "5000")
+            self.program = "programme 1"
         if btn_clicked.objectName() == "btn_prog2":
             update_data("program", "programme 2")
             update_data("duration", "6000")
+            self.program = "programme 2"
         if btn_clicked.objectName() == "btn_prog3":
             update_data("program", "programme 3")
             update_data("duration", "8000")
+            self.program = "programme 3"
 
         self.btn_prog1.setChecked(False)
         self.btn_prog2.setChecked(False)
@@ -130,6 +135,8 @@ class Machining(QMainWindow, Screen):
         loadUi('./Views/Machining.ui', self)
 
         self.stopped = False
+
+        self.btn_stop.clicked.connect(self.program_stopped)
 
     def program_timer(self, sec):
 
