@@ -18,7 +18,8 @@ class Screen(QWidget):
     @staticmethod
     def navigation(goto: str):
 
-        from Controllers.Navigator import Navigator, MyStartUp, MyMachining, MyMachiningInterruption, MyEmergencyStop
+        from Controllers.Navigator import Navigator, MyStartUp, MyProgramsList, MyMachining, \
+            MyMachiningInterruption, MyEmergencyStop
 
         for screen in range(0, Navigator.count()):
 
@@ -29,6 +30,9 @@ class Screen(QWidget):
 
         if Navigator.currentWidget() == MyStartUp:
             MyStartUp.update_progressBar(0)
+
+        if Navigator.currentWidget() == MyProgramsList:
+            MyProgramsList.toggle_text_emergency()
 
         if Navigator.currentWidget() == MyMachining:
             MyMachining.text_program.setText(get_datas("program"))
@@ -83,13 +87,23 @@ class ProgramsList(QMainWindow, Screen):
         self.btn_prog2.clicked.connect(lambda: self.program_selection_handler(self.btn_prog2))
         self.btn_prog3.clicked.connect(lambda: self.program_selection_handler(self.btn_prog3))
 
-        self.btn_start.clicked.connect(lambda: self.navigation('Machining'))
+        self.btn_start.clicked.connect(self.handle_navigation)
 
-    # def emergency_pressed(self):
-    #     self.emergency_alert.setText("Attention")
-    #
-    # def emergency_released(self):
-    #     self.emergency_alert.setText("")
+    def handle_navigation(self):
+        if GPIO.input(BTN_EMERGENCY):
+            self.navigation('Machining')
+        else:
+            pass
+
+    def toggle_text_emergency(self):
+        if GPIO.input(BTN_EMERGENCY):
+            self.text_warning.setText("")
+            self.btn_start.setEnabled(True)
+        else:
+            self.text_warning.setText("Arrêt d'urgence enclenché, impossible d'usiner")
+            self.btn_start.setEnabled(False)
+
+        QtCore.QTimer.singleShot(10, self.toggle_text_emergency)
 
     def program_selection_handler(self, btn_clicked):
         if btn_clicked.objectName() == "btn_prog1":
@@ -102,7 +116,6 @@ class ProgramsList(QMainWindow, Screen):
             update_data("program", "programme 3")
             update_data("duration", "8000")
 
-        self.btn_start.setEnabled(True)
         self.btn_prog1.setChecked(False)
         self.btn_prog2.setChecked(False)
         self.btn_prog3.setChecked(False)
@@ -172,5 +185,4 @@ class EmergencyStop(QMainWindow, Screen):
         if GPIO.input(BTN_EMERGENCY):
             self.navigation('ProgramsList')
             return
-        # QtCore.QTimer.singleShot(10, self.wait_for_emergency_released)
-        self.wait_for_emergency_released()
+        QtCore.QTimer.singleShot(10, self.wait_for_emergency_released)
