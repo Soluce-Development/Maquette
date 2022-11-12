@@ -12,12 +12,8 @@ from Constants import *
 class Screen(QWidget):
     """Parent class of every screen."""
 
-    event_detected = pyqtSignal()
-
     def __init__(self):
         super().__init__()
-
-        GPIO.add_event_detect(BTN_EMERGENCY, GPIO.BOTH, callback=self.event_detected.emit)
 
     @staticmethod
     def navigation(goto: str):
@@ -89,24 +85,6 @@ class ProgramsList(QMainWindow, Screen):
 
         self.btn_start.clicked.connect(lambda: self.navigation('Machining'))
 
-        self.event_detected.connect(self.on_gpio_event)
-
-        widget = QWidget()
-
-        widget.emergency_on.connect(self.emergency_pressed)
-        widget.emergency_off.connect(self.emergency_released)
-
-        # class myWidget(QWidget):
-        #     emergency_on=pyqtSignal()
-        # def action():
-        #     self.sigToto.emit()
-        #
-        # widget=myWidget()
-        # widget.emergency_on.connect(emergency_pressed)
-        #
-        # def traitementToto():
-        #     ...
-
     def emergency_pressed(self):
         self.emergency_alert.setText("Attention")
 
@@ -141,14 +119,11 @@ class Machining(QMainWindow, Screen):
 
         self.stopped = False
 
-        # self.btn_stop.clicked.connect(self.program_stopped)
-
-        self.event_detected.connect(self.on_gpio_event)
-
-    def on_gpio_event(self, channel):
-        self.navigation('EmergencyStop')
-
     def program_timer(self, sec):
+
+        if not GPIO.input(BTN_EMERGENCY):
+            self.navigation('EmergencyStop')
+            return
 
         if self.stopped:
             self.stopped = False
