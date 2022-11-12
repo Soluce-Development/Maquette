@@ -85,29 +85,28 @@ class ProgramsList(QMainWindow, Screen):
 
         self.btn_start.clicked.connect(lambda: self.navigation('Machining'))
 
-    def emergency_pressed(self):
-        self.emergency_alert.setText("Attention")
+    # def emergency_pressed(self):
+    #     self.emergency_alert.setText("Attention")
+    #
+    # def emergency_released(self):
+    #     self.emergency_alert.setText("")
 
-    def emergency_released(self):
-        self.emergency_alert.setText("")
+    def program_selection_handler(self, btn_clicked):
+        if btn_clicked.objectName() == "btn_prog1":
+            update_data("program", "programme 1")
+            update_data("duration", "5000")
+        if btn_clicked.objectName() == "btn_prog2":
+            update_data("program", "programme 2")
+            update_data("duration", "6000")
+        if btn_clicked.objectName() == "btn_prog3":
+            update_data("program", "programme 3")
+            update_data("duration", "8000")
 
-
-def program_selection_handler(self, btn_clicked):
-    if btn_clicked.objectName() == "btn_prog1":
-        update_data("program", "programme 1")
-        update_data("duration", "5000")
-    if btn_clicked.objectName() == "btn_prog2":
-        update_data("program", "programme 2")
-        update_data("duration", "6000")
-    if btn_clicked.objectName() == "btn_prog3":
-        update_data("program", "programme 3")
-        update_data("duration", "8000")
-
-    self.btn_start.setEnabled(True)
-    self.btn_prog1.setChecked(False)
-    self.btn_prog2.setChecked(False)
-    self.btn_prog3.setChecked(False)
-    btn_clicked.setChecked(True)
+        self.btn_start.setEnabled(True)
+        self.btn_prog1.setChecked(False)
+        self.btn_prog2.setChecked(False)
+        self.btn_prog3.setChecked(False)
+        btn_clicked.setChecked(True)
 
 
 class Machining(QMainWindow, Screen):
