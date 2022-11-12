@@ -90,6 +90,7 @@ class ProgramsList(QMainWindow, Screen):
         self.btn_start.clicked.connect(self.handle_navigation)
 
         self.program_chosen = False
+        self.text_choose_progam.setText("")
 
     def handle_navigation(self):
         if self.program_chosen:
