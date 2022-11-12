@@ -195,7 +195,7 @@
       <item>
        <widget class="QLabel" name="text_choose_program">
         <property name="text">
-         <string/>
+         <string>TextLabel</string>
         </property>
        </widget>
       </item>

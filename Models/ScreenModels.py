@@ -90,12 +90,13 @@ class ProgramsList(QMainWindow, Screen):
         self.btn_start.clicked.connect(self.handle_navigation)
 
         self.program_chosen = False
+        self.text_choose_program.setText("")
 
     def handle_navigation(self):
         if self.program_chosen:
             self.navigation('Machining')
         else:
-            self.text_choose_progam.setText("Veuillez choisir un programme")
+            self.text_choose_program.setText("Veuillez choisir un programme")
 
     def toggle_text_emergency(self):
         if GPIO.input(BTN_EMERGENCY):
@@ -109,7 +110,7 @@ class ProgramsList(QMainWindow, Screen):
 
     def program_selection_handler(self, btn_clicked):
         self.program_chosen = True
-        self.text_choose_progam.setText("")
+        self.text_choose_program.setText("")
         if btn_clicked.objectName() == "btn_prog1":
             update_data("program", "programme 1")
             update_data("duration", "5000")
