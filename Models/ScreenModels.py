@@ -1,5 +1,5 @@
 from PyQt5 import QtCore
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, pyqtSignal
 from PyQt5.QtWidgets import QMainWindow, QWidget
 from PyQt5.uic import loadUi
 import RPi.GPIO as GPIO
@@ -12,13 +12,17 @@ from Constants import *
 class Screen(QWidget):
     """Parent class of every screen."""
 
+    event_detected = pyqtSignal()
+
     def __init__(self):
         super().__init__()
+
+        GPIO.add_event_detect(BTN_EMERGENCY, GPIO.BOTH, callback=self.event_detected.emit)
 
     @staticmethod
     def navigation(goto: str):
 
-        from Controllers.Navigator import Navigator, MyStartUp, MyMachining, MyMachiningInterruption
+        from Controllers.Navigator import Navigator, MyStartUp, MyMachining, MyMachiningInterruption, MyEmergencyStop
 
         for screen in range(0, Navigator.count()):
 
@@ -34,9 +38,11 @@ class Screen(QWidget):
             MyMachining.text_program.setText(get_datas("program"))
             MyMachining.program_timer(0)
 
-        while Navigator.currentWidget() == MyMachiningInterruption:
-            if GPIO.event_detected(BTN_EMERGENCY):
-                Navigator.currentWidget().navigation('ProgramsList')
+        if Navigator.currentWidget() == MyMachiningInterruption:
+            MyMachiningInterruption.update_progressBar(0)
+
+        if Navigator.currentWidget() == MyEmergencyStop:
+            MyEmergencyStop.wait_for_emergency_released()
 
 
 class MainScreen(QMainWindow, Screen):
@@ -83,37 +89,47 @@ class ProgramsList(QMainWindow, Screen):
 
         self.btn_start.clicked.connect(lambda: self.navigation('Machining'))
 
-    def program_selection_handler(self, btn_clicked):
+        self.event_detected.connect(self.on_gpio_event)
 
-        # match btn_clicked.objectName():
-        #     case "btn_prog1":
-        #         update_data("program", "programme 1")
-        #         update_data("duration", "5000")
-        #     case "btn_prog2":
-        #         update_data("program", "programme 2")
-        #         update_data("duration", "6000")
-        #     case "btn_prog3":
-        #         update_data("program", "programme 3")
-        #         update_data("duration", "8000")
+        widget = QWidget()
 
-        if btn_clicked.objectName() == "btn_prog1":
-            update_data("program", "programme 1")
-            update_data("duration", "5000")
-        if btn_clicked.objectName() == "btn_prog2":
-            update_data("program", "programme 2")
-            update_data("duration", "6000")
-        if btn_clicked.objectName() == "btn_prog3":
-            update_data("program", "programme 3")
-            update_data("duration", "8000")
+        widget.emergency_on.connect(self.emergency_pressed)
+        widget.emergency_off.connect(self.emergency_released)
+
+        # class myWidget(QWidget):
+        #     emergency_on=pyqtSignal()
+        # def action():
+        #     self.sigToto.emit()
+        #
+        # widget=myWidget()
+        # widget.emergency_on.connect(emergency_pressed)
+        #
+        # def traitementToto():
+        #     ...
+
+    def emergency_pressed(self):
+        self.emergency_alert.setText("Attention")
+
+    def emergency_released(self):
+        self.emergency_alert.setText("")
 
 
-        self.btn_start.setEnabled(True)
+def program_selection_handler(self, btn_clicked):
+    if btn_clicked.objectName() == "btn_prog1":
+        update_data("program", "programme 1")
+        update_data("duration", "5000")
+    if btn_clicked.objectName() == "btn_prog2":
+        update_data("program", "programme 2")
+        update_data("duration", "6000")
+    if btn_clicked.objectName() == "btn_prog3":
+        update_data("program", "programme 3")
+        update_data("duration", "8000")
 
-        self.btn_prog1.setChecked(False)
-        self.btn_prog2.setChecked(False)
-        self.btn_prog3.setChecked(False)
-
-        btn_clicked.setChecked(True)
+    self.btn_start.setEnabled(True)
+    self.btn_prog1.setChecked(False)
+    self.btn_prog2.setChecked(False)
+    self.btn_prog3.setChecked(False)
+    btn_clicked.setChecked(True)
 
 
 class Machining(QMainWindow, Screen):
@@ -125,13 +141,14 @@ class Machining(QMainWindow, Screen):
 
         self.stopped = False
 
-        self.btn_stop.clicked.connect(self.program_stopped)
+        # self.btn_stop.clicked.connect(self.program_stopped)
+
+        self.event_detected.connect(self.on_gpio_event)
+
+    def on_gpio_event(self, channel):
+        self.navigation('EmergencyStop')
 
     def program_timer(self, sec):
-
-        if not GPIO.input(BTN_EMERGENCY):
-            self.navigation('EmergencyStop')
-            return
 
         if self.stopped:
             self.stopped = False
@@ -177,9 +194,9 @@ class EmergencyStop(QMainWindow, Screen):
         super(EmergencyStop, self).__init__()
         loadUi('./Views/EmergencyStop.ui', self)
 
-    def emergency_released(self):
-        if GPIO.event_detected(BTN_EMERGENCY):
+    def wait_for_emergency_released(self):
+        if GPIO.input(BTN_EMERGENCY):
             self.navigation('ProgramsList')
-
-
-
+            return
+        # QtCore.QTimer.singleShot(10, self.wait_for_emergency_released)
+        self.wait_for_emergency_released()

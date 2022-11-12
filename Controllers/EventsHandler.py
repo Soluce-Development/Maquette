@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+from PyQt5.QtCore import pyqtSignal
 
 from Constants import *
 from Models.ScreenModels import Screen
@@ -28,8 +29,6 @@ def open_door(pin):
 
 def toggle_led_door(pin):
     """Turn on/off the LED_DOOR."""
-    # GPIO.output(LED_DOOR, not GPIO.input(LED_DOOR))
-
     if not GPIO.input(SENSOR_DOOR):
         GPIO.output(LED_DOOR, GPIO.HIGH)
     else:
@@ -37,9 +36,10 @@ def toggle_led_door(pin):
 
 
 def toggle_emergency(pin):
-    """Emergency"""
+    """Turn on/off the emergency screen"""
     if not GPIO.input(BTN_EMERGENCY):
-        Screen.navigation('EmergencyStop')
+        emergency_on = pyqtSignal()
+        emergency_on.emit()
     else:
         Screen.navigation('ProgramsList')
 
@@ -54,7 +54,7 @@ def toggle_jaw(pin):
 def initial_events():
     open_door(BTN_DOOR)
     toggle_led_door(SENSOR_DOOR)
-    toggle_emergency(BTN_EMERGENCY)
+    # toggle_emergency(BTN_EMERGENCY)
     toggle_jaw(SENSOR_PEDAL)
 
 
@@ -62,7 +62,5 @@ def add_events():
     GPIO.add_event_detect(BTN_DOOR, GPIO.BOTH, callback=open_door, bouncetime=10)
     GPIO.add_event_detect(SENSOR_DOOR, GPIO.BOTH, callback=toggle_led_door, bouncetime=10)
     # GPIO.add_event_detect(BTN_EMERGENCY, GPIO.BOTH, callback=toggle_emergency, bouncetime=100)
-
     GPIO.add_event_detect(BTN_EMERGENCY, GPIO.BOTH)
-
     GPIO.add_event_detect(SENSOR_PEDAL, GPIO.RISING, callback=toggle_jaw, bouncetime=100)
