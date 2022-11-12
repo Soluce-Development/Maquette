@@ -19,7 +19,7 @@
      <x>60</x>
      <y>10</y>
      <width>261</width>
-     <height>241</height>
+     <height>271</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -195,7 +195,7 @@
       <item>
        <widget class="QLabel" name="text_choose_program">
         <property name="text">
-         <string>TextLabel</string>
+         <string/>
         </property>
        </widget>
       </item>
