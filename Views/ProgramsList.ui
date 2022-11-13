@@ -488,11 +488,15 @@ QLabel {
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
-		background-color:  green;
+		background-color:  grey;
 	color: #fff;
 	font-size: 25pt;
 	border-radius: 10px;
 	padding: 40px;
+}
+
+QPushButton:checked{
+	background-color:  green;
 }</string>
         </property>
         <property name="text">
