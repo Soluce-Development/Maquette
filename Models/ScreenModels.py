@@ -31,7 +31,7 @@ class Screen(QWidget):
             MyStartUp.update_progressBar(0)
 
         if Navigator.currentWidget() == MyProgramsList:
-            MyProgramsList.toggle_text_emergency()
+            MyProgramsList.handle_error_messages()
 
         if Navigator.currentWidget() == MyMachining:
             MyMachining.text_program.setText(get_datas("program"))
@@ -97,15 +97,23 @@ class ProgramsList(QMainWindow, Screen):
         else:
             self.text_choose_program.setText("Veuillez choisir un programme")
 
-    def toggle_text_emergency(self):
-        if GPIO.input(BTN_EMERGENCY):
-            self.text_warning.setText("")
+    def handle_error_messages(self):
+        if GPIO.input(BTN_EMERGENCY) and not GPIO.input(SENSOR_DOOR):
             self.btn_start.setEnabled(True)
         else:
-            self.text_warning.setText("Arrêt d'urgence enclenché, impossible d'usiner")
+            if not GPIO.input(BTN_EMERGENCY):
+                self.text_emergency.setText("Arrêt d'urgence enclenché, impossible d'usiner")
+            else:
+                self.text_emergency.setText("")
+
+            if GPIO.input(SENSOR_DOOR):
+                self.text_door.setText("Porte ouverte, impossible d'usiner")
+            else:
+                self.text_door.setText("")
+
             self.btn_start.setEnabled(False)
 
-        QtCore.QTimer.singleShot(10, self.toggle_text_emergency)
+        QtCore.QTimer.singleShot(10, self.handle_error_messages)
 
     def program_selection_handler(self, btn_clicked):
         self.program_chosen = True

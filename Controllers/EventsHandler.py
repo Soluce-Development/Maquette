@@ -1,8 +1,5 @@
 import RPi.GPIO as GPIO
-from PyQt5.QtCore import pyqtSignal
-
 from Constants import *
-from Models.ScreenModels import Screen
 
 # Initialisation
 GPIO.setmode(GPIO.BCM)
