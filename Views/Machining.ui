@@ -76,14 +76,14 @@
        <widget class="QLabel" name="label_3">
         <property name="font">
          <font>
-          <pointsize>30</pointsize>
+          <pointsize>20</pointsize>
           <italic>true</italic>
          </font>
         </property>
         <property name="styleSheet">
          <string notr="true">QLabel {
 	qproperty-alignment: AlignCenter;
-	font-size: 30pt;
+	font-size: 20pt;
 }</string>
         </property>
         <property name="text">
@@ -164,6 +164,9 @@
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Maximum</enum>
+        </property>
         <property name="sizeHint" stdset="0">
          <size>
           <width>40</width>
@@ -201,6 +204,9 @@
        <spacer name="horizontalSpacer_6">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Maximum</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>

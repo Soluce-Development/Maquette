@@ -111,7 +111,7 @@ class ProgramsList(QMainWindow, Screen):
         #
         #     self.btn_start.setEnabled(False)
         #
-        # QtCore.QTimer.singleShot(10, self.handle_error_messages)
+        QtCore.QTimer.singleShot(10, self.handle_error_messages)
 
     def program_selection_handler(self, btn_clicked):
         self.program_chosen = True
