@@ -52,8 +52,6 @@ class MainScreen(QMainWindow, Screen):
 
         self.setWindowTitle("Logiciel de démonstration")
 
-        self.setFixedWidth(600)
-        self.setFixedHeight(300)
 
         from Controllers.Navigator import Navigator
         self.setCentralWidget(Navigator)
