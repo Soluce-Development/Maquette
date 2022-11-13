@@ -96,9 +96,8 @@ class ProgramsList(QMainWindow, Screen):
             self.text_choose_program.setText("Veuillez choisir un programme")
 
     def handle_error_messages(self):
-        pass
         # if GPIO.input(BTN_EMERGENCY) and not GPIO.input(SENSOR_DOOR):
-        #     self.btn_start.setEnabled(True)
+        self.btn_start.setEnabled(True)
         # else:
         #     if not GPIO.input(BTN_EMERGENCY):
         #         self.text_emergency.setText("Arrêt d'urgence enclenché, impossible d'usiner")
