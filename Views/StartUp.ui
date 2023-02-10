@@ -9,14 +9,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1410</width>
-    <height>692</height>
+    <width>480</width>
+    <height>320</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1</width>
-    <height>10</height>
+    <width>480</width>
+    <height>320</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>480</width>
+    <height>320</height>
+   </size>
+  </property>
+  <property name="sizeIncrement">
+   <size>
+    <width>0</width>
+    <height>0</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -27,8 +39,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1423</width>
-     <height>355</height>
+     <width>481</width>
+     <height>321</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -51,13 +63,13 @@
        <widget class="QLabel" name="label_2">
         <property name="font">
          <font>
-          <pointsize>50</pointsize>
+          <pointsize>20</pointsize>
          </font>
         </property>
         <property name="styleSheet">
          <string notr="true">QLabel {
 	qproperty-alignment: AlignCenter;
-	font-size: 50pt;
+	font-size: 20pt;
 }</string>
         </property>
         <property name="text">
@@ -122,14 +134,14 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>150</width>
-          <height>50</height>
+          <width>10</width>
+          <height>10</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>16777215</width>
-          <height>16777215</height>
+          <width>100000</width>
+          <height>40</height>
          </size>
         </property>
         <property name="font">
@@ -148,6 +160,9 @@
 	
 }
 </string>
+        </property>
+        <property name="maximum">
+         <number>104</number>
         </property>
         <property name="value">
          <number>0</number>
@@ -207,13 +222,13 @@
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
-          <pointsize>30</pointsize>
+          <pointsize>15</pointsize>
          </font>
         </property>
         <property name="styleSheet">
          <string notr="true">QLabel {
 	qproperty-alignment: AlignCenter;
-	font-size: 30pt;
+	font-size: 15pt;
 }</string>
         </property>
         <property name="text">

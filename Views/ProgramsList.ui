@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1221</width>
-    <height>671</height>
+    <width>480</width>
+    <height>320</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>480</width>
+    <height>320</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>480</width>
+    <height>320</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -17,41 +29,25 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>20</y>
-     <width>1141</width>
-     <height>671</height>
+     <y>10</y>
+     <width>481</width>
+     <height>341</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <spacer name="verticalSpacer_9">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
        <widget class="QLabel" name="label_4">
         <property name="font">
          <font>
-          <pointsize>50</pointsize>
+          <pointsize>20</pointsize>
          </font>
         </property>
         <property name="styleSheet">
          <string notr="true">QLabel {
 	qproperty-alignment: AlignCenter;
-	font-size: 50pt;
+	font-size: 20pt;
 }</string>
         </property>
         <property name="text">
@@ -105,9 +101,9 @@
 {
 	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(254, 171, 66, 255),stop:1 rgba(255, 153, 0, 255));
 	color: #000;
-	font-size: 25pt;
+	font-size: 10pt;
 	border-radius: 10px;
-	padding: 40px;
+	padding: 2px;
 
 
 }
@@ -121,8 +117,8 @@ QPushButton::pressed
 </string>
             </property>
             <property name="text">
-             <string>Programme 
- d'usinage n°1</string>
+             <string>Prog.
+ n°1</string>
             </property>
            </widget>
           </item>
@@ -131,7 +127,7 @@ QPushButton::pressed
             <property name="styleSheet">
              <string notr="true">QLabel {
 	qproperty-alignment: AlignCenter;
-	font-size: 15pt;
+	font-size: 10pt;
 }</string>
             </property>
             <property name="text">
@@ -158,15 +154,19 @@ QPushButton::pressed
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
            <widget class="QPushButton" name="btn_prog2">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">QPushButton
 {
 	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(254, 171, 66, 255),stop:1 rgba(255, 153, 0, 255));
 	color: #000;
-	font-size: 25pt;
+	font-size: 10pt;
 	border-radius: 10px;
-	padding: 40px;
-
+	padding: 2px;
 
 }
 
@@ -179,8 +179,8 @@ QPushButton::pressed
 </string>
             </property>
             <property name="text">
-             <string>Programme 
- d'usinage n°2</string>
+             <string>Prog.
+ n°2</string>
             </property>
            </widget>
           </item>
@@ -189,7 +189,7 @@ QPushButton::pressed
             <property name="styleSheet">
              <string notr="true">QLabel {
 	qproperty-alignment: AlignCenter;
-		font-size: 15pt;
+	font-size: 10pt;
 }</string>
             </property>
             <property name="text">
@@ -221,9 +221,9 @@ QPushButton::pressed
 {
 	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(254, 171, 66, 255),stop:1 rgba(255, 153, 0, 255));
 	color: #000;
-	font-size: 25pt;
+	font-size: 10pt;
 	border-radius: 10px;
-	padding: 40px;
+	padding: 2px;
 
 
 }
@@ -237,8 +237,8 @@ QPushButton::pressed
 </string>
             </property>
             <property name="text">
-             <string>Programme 
- d'usinage n°3</string>
+             <string>Prog.
+ n°3</string>
             </property>
            </widget>
           </item>
@@ -247,7 +247,7 @@ QPushButton::pressed
             <property name="styleSheet">
              <string notr="true">QLabel {
 	qproperty-alignment: AlignCenter;
-	font-size: 15pt;
+	font-size: 10pt;
 }</string>
             </property>
             <property name="text">
@@ -313,7 +313,7 @@ QPushButton::pressed
         <property name="styleSheet">
          <string notr="true">QLabel {
 	qproperty-alignment: AlignCenter;
-		font-size: 15pt;
+		font-size: 10pt;
 }</string>
         </property>
         <property name="text">
@@ -369,7 +369,7 @@ QPushButton::pressed
         <property name="styleSheet">
          <string notr="true">QLabel {
 	qproperty-alignment: AlignCenter;
-		font-size: 15pt;
+		font-size: 10pt;
 }</string>
         </property>
         <property name="text">
@@ -428,7 +428,7 @@ QLabel {
 	qproperty-alignment: AlignCenter;
 
 	color: rgb(255, 0, 0);
-	font: italic 15pt &quot;Segoe UI&quot;;
+	font: italic 10pt &quot;Segoe UI&quot;;
 
 
 }</string>
@@ -490,9 +490,9 @@ QLabel {
          <string notr="true">QPushButton {
 		background-color:  green;
 	color: #fff;
-	font-size: 25pt;
+	font-size: 15pt;
 	border-radius: 10px;
-	padding: 40px;
+	padding: 20px;
 }
 
 QPushButton:disabled{
