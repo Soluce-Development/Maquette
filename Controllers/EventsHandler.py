@@ -41,9 +41,10 @@ def toggle_jaw(pin):
 # --- Add events ---
 
 def initial_events():
-    open_door(BTN_DOOR)
-    toggle_led_door(SENSOR_DOOR)
-    toggle_jaw(SENSOR_PEDAL)
+    pass
+    # open_door(BTN_DOOR)
+    # toggle_led_door(SENSOR_DOOR)
+    # toggle_jaw(SENSOR_PEDAL)
 
 
 def add_events():
