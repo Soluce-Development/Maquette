@@ -7,6 +7,8 @@ import RPi.GPIO as GPIO
 from utils.dataManager import update_data, get_datas
 from Constants import *
 
+from Controllers.EventsHandler import toggledd
+
 
 class Screen(QWidget):
     """Parent class of every screen."""
@@ -108,7 +110,7 @@ class ProgramsList(QMainWindow, Screen):
 
         if GPIO.input(SENSOR_DOOR) or not GPIO.input(BTN_DOOR):
             # self.text_door.setText("Porte ouverte, impossible d'usiner")
-            self.text_door.setText(str(GPIO.input(SENSOR_PEDAL)))
+            self.text_door.setText(str(GPIO.input(SENSOR_PEDAL))+str(toggledd))
         else:
             self.text_door.setText("")
 

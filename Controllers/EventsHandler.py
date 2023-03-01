@@ -51,7 +51,12 @@ toggledd = True
 def toggle_jaw(pin):
     """Open/close the jaw."""
 
-    GPIO.output(LED_MACHINING, not GPIO.input(SENSOR_PEDAL))
+    # GPIO.output(LED_MACHINING, not GPIO.input(SENSOR_PEDAL))
+
+    global toggledd
+
+    toggledd = not toggledd
+    return toggledd
 
     # global toggledd
     #
