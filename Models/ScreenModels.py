@@ -119,7 +119,6 @@ class ProgramsList(QMainWindow, Screen):
                     print("closing ...")
 
                 self.jaw_closed = not self.jaw_closed
-                print('rising, jaw_closed : ', self.jaw_closed)
 
         if GPIO.input(BTN_EMERGENCY):
             self.text_emergency.setText("Arrêt d'urgence enclenché, impossible d'usiner")
@@ -127,9 +126,7 @@ class ProgramsList(QMainWindow, Screen):
             self.text_emergency.setText("")
 
         if GPIO.input(SENSOR_DOOR) or not GPIO.input(BTN_DOOR):
-            # self.text_door.setText("Porte ouverte, impossible d'usiner")
-            global toggledd
-            self.text_door.setText(str(GPIO.input(SENSOR_PEDAL)))
+            self.text_door.setText("Porte ouverte, impossible d'usiner")
         else:
             self.text_door.setText("")
 
