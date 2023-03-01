@@ -31,7 +31,7 @@
      <x>0</x>
      <y>10</y>
      <width>481</width>
-     <height>341</height>
+     <height>342</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -480,29 +480,6 @@ QLabel {
          </size>
         </property>
        </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn_start">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-		background-color:  green;
-	color: #fff;
-	font-size: 15pt;
-	border-radius: 10px;
-	padding: 20px;
-}
-
-QPushButton:disabled{
-	background-color:  grey;
-}</string>
-        </property>
-        <property name="text">
-         <string>Lancer l'usinage</string>
-        </property>
-       </widget>
       </item>
       <item>
        <spacer name="horizontalSpacer_2">
