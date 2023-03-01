@@ -56,20 +56,22 @@ def toggle_jaw(pin):
     global toggledd
 
     if toggledd:
+        GPIO.output(LED_MACHINING, GPIO.LOW)
         GPIO.output(LED_EMERGENCY, GPIO.HIGH)
         GPIO.output(JAW_UP, GPIO.HIGH)
-        sleep(3)
-        GPIO.output(LED_EMERGENCY, GPIO.LOW)
-        GPIO.output(JAW_UP, GPIO.LOW)
+        # sleep(3)
+        # GPIO.output(LED_EMERGENCY, GPIO.LOW)
+        # GPIO.output(JAW_UP, GPIO.LOW)
         toggledd = not toggledd
         return
 
     else:
+        GPIO.output(LED_EMERGENCY, GPIO.LOW)
         GPIO.output(LED_MACHINING, GPIO.HIGH)
         GPIO.output(JAW_DOWN, GPIO.HIGH)
-        sleep(3)
-        GPIO.output(LED_MACHINING, GPIO.LOW)
-        GPIO.output(JAW_DOWN, GPIO.LOW)
+        # sleep(3)
+        # GPIO.output(LED_MACHINING, GPIO.LOW)
+        # GPIO.output(JAW_DOWN, GPIO.LOW)
         toggledd = not toggledd
         return
 
