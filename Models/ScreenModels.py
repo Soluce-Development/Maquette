@@ -94,12 +94,6 @@ class ProgramsList(QMainWindow, Screen):
 
     def handle_navigation(self):
 
-        if GPIO.event_detected(SENSOR_PEDAL):
-            self.jaw_closed = not self.jaw_closed
-            GPIO.output(JAW_DOWN, self.jaw_closed)
-            GPIO.output(JAW_UP, not self.jaw_closed)
-            print('detected')
-
         # if GPIO.input(SENSOR_PEDAL):
         #     self.jaw_closed = True
         #     GPIO.output(LED_EMERGENCY, GPIO.HIGH)
@@ -120,6 +114,12 @@ class ProgramsList(QMainWindow, Screen):
         QtCore.QTimer.singleShot(10, self.handle_navigation)
 
     def handle_error_messages(self):
+
+        if GPIO.event_detected(SENSOR_PEDAL):
+            self.jaw_closed = not self.jaw_closed
+            GPIO.output(JAW_DOWN, self.jaw_closed)
+            GPIO.output(JAW_UP, not self.jaw_closed)
+            print('detected')
 
         if GPIO.input(BTN_EMERGENCY):
             self.text_emergency.setText("Arrêt d'urgence enclenché, impossible d'usiner")
