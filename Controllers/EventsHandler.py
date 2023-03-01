@@ -47,20 +47,22 @@ def toggle_led_emergency(pin):
 
 toggledd = True
 
+
 def toggle_jaw(pin):
     """Open/close the jaw."""
 
     # GPIO.output(LED_MACHINING, not GPIO.input(SENSOR_PEDAL))
 
     global toggledd
-    toggledd = not toggledd
-
-    print(toggledd)
+    print('before', toggledd)
 
     if toggledd:
         GPIO.output(LED_EMERGENCY, GPIO.HIGH)
     else:
         GPIO.output(LED_EMERGENCY, GPIO.LOW)
+
+    toggledd = not toggledd
+    print('after', toggledd)
 
     # global toggledd
     #
