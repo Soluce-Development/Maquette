@@ -106,7 +106,7 @@ class ProgramsList(QMainWindow, Screen):
         else:
             self.text_emergency.setText("")
 
-        if GPIO.input(SENSOR_DOOR):
+        if GPIO.input(SENSOR_DOOR) or GPIO.input(BTN_DOOR):
             self.text_door.setText("Porte ouverte, impossible d'usiner")
         else:
             self.text_door.setText("")

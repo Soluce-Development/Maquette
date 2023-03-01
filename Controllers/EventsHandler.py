@@ -41,14 +41,14 @@ def toggle_jaw(pin):
 # --- Add events ---
 
 def initial_events():
-    # pass
-    open_door(BTN_DOOR)
-    toggle_led_door(SENSOR_DOOR)
+    pass
+    # open_door(BTN_DOOR)
+    # toggle_led_door(SENSOR_DOOR)
     # toggle_jaw(SENSOR_PEDAL)
 
 
 def add_events():
     pass
-    GPIO.add_event_detect(BTN_DOOR, GPIO.BOTH, callback=open_door)
-    GPIO.add_event_detect(SENSOR_DOOR, GPIO.BOTH, callback=toggle_led_door, bouncetime=10)
+    # GPIO.add_event_detect(BTN_DOOR, GPIO.BOTH, callback=open_door)
+    # GPIO.add_event_detect(SENSOR_DOOR, GPIO.BOTH, callback=toggle_led_door, bouncetime=10)
     # GPIO.add_event_detect(SENSOR_PEDAL, GPIO.RISING, callback=toggle_jaw, bouncetime=100)
