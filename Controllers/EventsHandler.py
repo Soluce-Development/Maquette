@@ -47,7 +47,6 @@ def toggle_led_emergency(pin):
 
 toggle = True
 
-
 def toggle_jaw(pin):
     """Open/close the jaw."""
     global toggle
@@ -82,4 +81,4 @@ def add_events():
     # GPIO.add_event_detect(BTN_DOOR, GPIO.BOTH, callback=open_door)
     GPIO.add_event_detect(BTN_EMERGENCY, GPIO.BOTH, callback=toggle_led_emergency)
     # GPIO.add_event_detect(SENSOR_DOOR, GPIO.BOTH, callback=toggle_led_door, bouncetime=10)
-    GPIO.add_event_detect(SENSOR_PEDAL, GPIO.RISING, callback=toggle_jaw, bouncetime=2000)
+    GPIO.add_event_detect(SENSOR_PEDAL, GPIO.RISING, callback=toggle_jaw, bouncetime=10)
