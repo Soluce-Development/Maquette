@@ -1,4 +1,8 @@
+from time import sleep
+
 import RPi.GPIO as GPIO
+from PyQt5 import QtCore
+
 from Constants import *
 
 # Initialisation
@@ -9,7 +13,7 @@ INPUTS = (SENSOR_DOOR, BTN_DOOR, BTN_START, BTN_EMERGENCY, SENSOR_PEDAL)
 GPIO.setup(INPUTS, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # Setting Outputs
-OUTPUTS = (LED_MACHINING, LED_EMERGENCY)
+OUTPUTS = (LED_MACHINING, LED_EMERGENCY, JAW_UP, JAW_DOWN)
 # OUTPUTS = (ACTUATOR_DOOR, ACTUATOR_JAW, LED_DOOR, LED_MACHINING)
 GPIO.setup(OUTPUTS, GPIO.OUT, initial=GPIO.LOW)
 
@@ -51,15 +55,21 @@ def toggle_jaw(pin):
 
     if toggle:
         GPIO.output(LED_EMERGENCY, GPIO.HIGH)
-    else:
+        sleep(3000)
         GPIO.output(LED_EMERGENCY, GPIO.LOW)
 
-    # GPIO.output(ACTUATOR_JAW, not GPIO.input(ACTUATOR_JAW))
-    # if GPIO.input(SENSOR_PEDAL):
-    #     GPIO.output(LED_EMERGENCY, GPIO.HIGH)
-    #
-    # else:
-    #     GPIO.output(LED_EMERGENCY, GPIO.LOW)
+        # GPIO.output(JAW_UP, GPIO.HIGH)
+        # def update_progressBar(pourcentage):
+        #     pourcentage += 1
+        #     if pourcentage <= 100:
+        #         QtCore.QTimer.singleShot(30, lambda: update_progressBar(pourcentage))
+        #
+        # update_progressBar(0)
+
+    else:
+        pass
+        # GPIO.output(LED_EMERGENCY, GPIO.LOW)
+        # GPIO.output(JAW_DOWN, GPIO.HIGH)
 
 
 # --- Add events ---

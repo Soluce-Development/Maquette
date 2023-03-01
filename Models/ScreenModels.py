@@ -188,7 +188,7 @@ class MachiningInterruption(QMainWindow, Screen):
         super(MachiningInterruption, self).__init__()
         loadUi('./Views/MachiningInterruption.ui', self)
 
-    def update_progressBar(self, pourcentage):
+    def update_progressBar(self, v):
         pourcentage += 1
         if pourcentage <= 100:
             self.progressBar.setValue(pourcentage)
