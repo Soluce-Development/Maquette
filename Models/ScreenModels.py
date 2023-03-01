@@ -108,7 +108,7 @@ class ProgramsList(QMainWindow, Screen):
 
         if GPIO.input(SENSOR_DOOR) or not GPIO.input(BTN_DOOR):
             # self.text_door.setText("Porte ouverte, impossible d'usiner")
-            self.text_door.setText(GPIO.input(SENSOR_PEDAL))
+            self.text_door.setText(str(GPIO.input(SENSOR_PEDAL)))
         else:
             self.text_door.setText("")
 
