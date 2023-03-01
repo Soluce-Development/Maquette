@@ -55,20 +55,16 @@ def toggle_jaw(pin):
 
     if toggle:
         GPIO.output(LED_EMERGENCY, GPIO.HIGH)
-        sleep(1)
+        sleep(2)
         GPIO.output(LED_EMERGENCY, GPIO.LOW)
-
-        # GPIO.output(JAW_UP, GPIO.HIGH)
-        # def update_progressBar(pourcentage):
-        #     pourcentage += 1
-        #     if pourcentage <= 100:
-        #         QtCore.QTimer.singleShot(30, lambda: update_progressBar(pourcentage))
-        #
-        # update_progressBar(0)
 
     else:
         pass
-        # GPIO.output(LED_EMERGENCY, GPIO.LOW)
+
+        GPIO.output(LED_MACHINING, GPIO.HIGH)
+        sleep(2)
+        GPIO.output(LED_MACHINING, GPIO.LOW)
+
         # GPIO.output(JAW_DOWN, GPIO.HIGH)
 
 
