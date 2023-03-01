@@ -111,10 +111,12 @@ class ProgramsList(QMainWindow, Screen):
                     GPIO.output(LED_MACHINING, GPIO.LOW)
                     GPIO.output(JAW_UP, GPIO.LOW)
                     GPIO.output(JAW_DOWN, GPIO.HIGH)
+                    print("opening ...")
                 else:
                     GPIO.output(LED_MACHINING, GPIO.HIGH)
                     GPIO.output(JAW_DOWN, GPIO.LOW)
                     GPIO.output(JAW_UP, GPIO.HIGH)
+                    print("closing ...")
 
                 self.jaw_closed = not self.jaw_closed
                 print('rising, jaw_closed : ', self.jaw_closed)
