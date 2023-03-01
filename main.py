@@ -1,6 +1,6 @@
 import sys
 
-import GPIO as GPIO
+import RPi.GPIO as GPIO
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QCursor
 from PyQt5.QtWidgets import QApplication
