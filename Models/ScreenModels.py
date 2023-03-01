@@ -95,17 +95,6 @@ class ProgramsList(QMainWindow, Screen):
 
     def handle_navigation(self):
 
-        # if GPIO.input(SENSOR_PEDAL):
-        #     self.jaw_closed = True
-        #     GPIO.output(LED_EMERGENCY, GPIO.HIGH)
-        #     GPIO.output(JAW_DOWN, GPIO.LOW)
-        #     GPIO.output(JAW_UP, GPIO.HIGH)
-        #
-        # else:
-        #     GPIO.output(LED_EMERGENCY, GPIO.LOW)
-        #     GPIO.output(JAW_UP, GPIO.LOW)
-        #     GPIO.output(JAW_DOWN, GPIO.HIGH)
-
         if self.program_chosen and self.enabled:
             if not GPIO.input(BTN_START):
                 self.navigation('Machining')
@@ -118,10 +107,12 @@ class ProgramsList(QMainWindow, Screen):
 
         if GPIO.event_detected(SENSOR_PEDAL):
             if not GPIO.input(SENSOR_PEDAL):
-                if self.jaw_closed :
-                    GPIO.output(JAW_DOWN, GPIO.HIGH)
+                if self.jaw_closed:
+                    GPIO.output(LED_MACHINING, GPIO.LOW)
                     GPIO.output(JAW_UP, GPIO.LOW)
+                    GPIO.output(JAW_DOWN, GPIO.HIGH)
                 else:
+                    GPIO.output(LED_MACHINING, GPIO.HIGH)
                     GPIO.output(JAW_DOWN, GPIO.LOW)
                     GPIO.output(JAW_UP, GPIO.HIGH)
 
