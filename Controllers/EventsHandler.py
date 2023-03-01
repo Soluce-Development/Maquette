@@ -35,7 +35,7 @@ def toggle_led_door(pin):
 
 def toggle_led_emergency(pin):
     """Turn on/off the LED_DOOR."""
-    if not GPIO.input(BTN_EMERGENCY):
+    if GPIO.input(BTN_EMERGENCY):
         GPIO.output(LED_EMERGENCY, GPIO.HIGH)
     else:
         GPIO.output(LED_EMERGENCY, GPIO.LOW)
