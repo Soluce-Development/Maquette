@@ -32,6 +32,7 @@ class Screen(QWidget):
 
         if Navigator.currentWidget() == MyProgramsList:
             MyProgramsList.handle_error_messages()
+            MyProgramsList.handle_navigation()
 
         if Navigator.currentWidget() == MyMachining:
             MyMachining.text_program.setText(get_datas("program"))
@@ -51,7 +52,6 @@ class MainScreen(QMainWindow, Screen):
         loadUi('./Views/MainScreen.ui', self)
 
         self.setWindowTitle("Logiciel de démonstration")
-
 
         from Controllers.Navigator import Navigator
         self.setCentralWidget(Navigator)
@@ -91,9 +91,12 @@ class ProgramsList(QMainWindow, Screen):
 
     def handle_navigation(self):
         if self.program_chosen:
-            self.navigation('Machining')
+            if not GPIO.input(BTN_START):
+                self.navigation('Machining')
         else:
             self.text_choose_program.setText("Veuillez choisir un programme")
+
+        QtCore.QTimer.singleShot(10, self.handle_navigation)
 
     def handle_error_messages(self):
 
@@ -109,6 +112,7 @@ class ProgramsList(QMainWindow, Screen):
 
         if not GPIO.input(BTN_EMERGENCY) and not GPIO.input(SENSOR_DOOR):
             self.btn_start.setEnabled(True)
+
         else:
             self.btn_start.setEnabled(False)
 

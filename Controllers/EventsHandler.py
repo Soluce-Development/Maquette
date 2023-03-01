@@ -5,7 +5,7 @@ from Constants import *
 GPIO.setmode(GPIO.BCM)
 
 # Setting Inputs
-INPUTS = (SENSOR_DOOR, BTN_DOOR, BTN_EMERGENCY, SENSOR_PEDAL)
+INPUTS = (SENSOR_DOOR, BTN_DOOR, BTN_START, BTN_EMERGENCY, SENSOR_PEDAL)
 GPIO.setup(INPUTS, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # Setting Outputs
