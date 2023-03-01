@@ -7,9 +7,6 @@ import RPi.GPIO as GPIO
 from utils.dataManager import update_data, get_datas
 from Constants import *
 
-from Controllers.EventsHandler import toggledd
-
-
 class Screen(QWidget):
     """Parent class of every screen."""
 
@@ -93,9 +90,9 @@ class ProgramsList(QMainWindow, Screen):
         self.jaw_closed = False
         self.text_choose_program.setText("")
 
-    def handle_navigation(self):
-
         GPIO.add_event_detect(SENSOR_PEDAL, GPIO.RISING)
+
+    def handle_navigation(self):
 
         if GPIO.event_detected(SENSOR_PEDAL):
             self.jaw_closed = not self.jaw_closed

@@ -18,5 +18,5 @@ if __name__ == "__main__":
     main_screen.show()
     initial_events()
     add_events()
-    GPIO.remove_event_detect(SENSOR_PEDAL)
+    # GPIO.remove_event_detect(SENSOR_PEDAL)
     sys.exit(app.exec_())
