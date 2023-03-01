@@ -55,6 +55,8 @@ def toggle_jaw(pin):
     global toggledd
     toggledd = not toggledd
 
+    print(toggledd)
+
     if toggledd:
         GPIO.output(LED_EMERGENCY, GPIO.HIGH)
     else:
