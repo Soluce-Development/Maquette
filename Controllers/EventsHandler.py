@@ -55,7 +55,7 @@ def toggle_jaw(pin):
 
     if toggle:
         GPIO.output(LED_EMERGENCY, GPIO.HIGH)
-        sleep(3000)
+        sleep(1)
         GPIO.output(LED_EMERGENCY, GPIO.LOW)
 
         # GPIO.output(JAW_UP, GPIO.HIGH)
