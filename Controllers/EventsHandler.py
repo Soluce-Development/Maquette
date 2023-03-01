@@ -63,9 +63,9 @@ def toggle_jaw(pin):
         # GPIO.output(LED_EMERGENCY, GPIO.LOW)
         # GPIO.output(JAW_UP, GPIO.LOW)
         toggledd = not toggledd
-        return
+        return toggledd
 
-    else:
+    if not toggledd:
         GPIO.output(LED_EMERGENCY, GPIO.LOW)
         GPIO.output(LED_MACHINING, GPIO.HIGH)
         GPIO.output(JAW_DOWN, GPIO.HIGH)
@@ -73,8 +73,7 @@ def toggle_jaw(pin):
         # GPIO.output(LED_MACHINING, GPIO.LOW)
         # GPIO.output(JAW_DOWN, GPIO.LOW)
         toggledd = not toggledd
-        return
-
+        return toggledd
         # GPIO.output(JAW_DOWN, GPIO.HIGH)
 
 
