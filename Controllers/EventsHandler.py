@@ -52,19 +52,19 @@ def toggle_jaw(pin):
 
     global toggle
 
-    if GPIO.input(SENSOR_PEDAL):
+    # if GPIO.input(SENSOR_PEDAL):
 
-        if toggle:
-            GPIO.output(LED_EMERGENCY, GPIO.HIGH)
-            sleep(1)
-            GPIO.output(LED_EMERGENCY, GPIO.LOW)
+    if toggle:
+        GPIO.output(LED_EMERGENCY, GPIO.HIGH)
+        sleep(1)
+        GPIO.output(LED_EMERGENCY, GPIO.LOW)
 
-        else:
-            GPIO.output(LED_MACHINING, GPIO.HIGH)
-            sleep(1)
-            GPIO.output(LED_MACHINING, GPIO.LOW)
+    else:
+        GPIO.output(LED_MACHINING, GPIO.HIGH)
+        sleep(1)
+        GPIO.output(LED_MACHINING, GPIO.LOW)
 
-        toggle = not toggle
+    toggle = not toggle
 
         # GPIO.output(JAW_DOWN, GPIO.HIGH)
 
@@ -84,4 +84,4 @@ def add_events():
     # GPIO.add_event_detect(BTN_DOOR, GPIO.BOTH, callback=open_door)
     GPIO.add_event_detect(BTN_EMERGENCY, GPIO.BOTH, callback=toggle_led_emergency)
     # GPIO.add_event_detect(SENSOR_DOOR, GPIO.BOTH, callback=toggle_led_door, bouncetime=10)
-    GPIO.add_event_detect(SENSOR_PEDAL, GPIO.FALLING, callback=toggle_jaw, bouncetime=10)
+    GPIO.add_event_detect(SENSOR_PEDAL, GPIO.FALLING, callback=toggle_jaw, bouncetime=100)
