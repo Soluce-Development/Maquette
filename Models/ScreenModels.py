@@ -96,10 +96,10 @@ class ProgramsList(QMainWindow, Screen):
             self.text_choose_program.setText("Veuillez choisir un programme")
 
     def handle_error_messages(self):
-        if GPIO.input(BTN_EMERGENCY) and not GPIO.input(SENSOR_DOOR):
+        if not GPIO.input(BTN_EMERGENCY) and not GPIO.input(SENSOR_DOOR):
             self.btn_start.setEnabled(True)
         else:
-            if not GPIO.input(BTN_EMERGENCY):
+            if GPIO.input(BTN_EMERGENCY):
                 self.text_emergency.setText("Arrêt d'urgence enclenché, impossible d'usiner")
             else:
                 self.text_emergency.setText("")
@@ -147,7 +147,7 @@ class Machining(QMainWindow, Screen):
 
     def program_timer(self, sec):
 
-        if not GPIO.input(BTN_EMERGENCY):
+        if GPIO.input(BTN_EMERGENCY):
             self.navigation('EmergencyStop')
             return
 
@@ -196,7 +196,7 @@ class EmergencyStop(QMainWindow, Screen):
         loadUi('./Views/EmergencyStop.ui', self)
 
     def wait_for_emergency_released(self):
-        if GPIO.input(BTN_EMERGENCY):
+        if not GPIO.input(BTN_EMERGENCY):
             self.navigation('ProgramsList')
             return
         QtCore.QTimer.singleShot(10, self.wait_for_emergency_released)
