@@ -117,10 +117,15 @@ class ProgramsList(QMainWindow, Screen):
     def handle_error_messages(self):
 
         if GPIO.event_detected(SENSOR_PEDAL):
-            if GPIO.input(SENSOR_PEDAL):
+            if not GPIO.input(SENSOR_PEDAL):
+                if self.jaw_closed :
+                    GPIO.output(JAW_DOWN, GPIO.HIGH)
+                    GPIO.output(JAW_UP, GPIO.LOW)
+                else:
+                    GPIO.output(JAW_DOWN, GPIO.LOW)
+                    GPIO.output(JAW_UP, GPIO.HIGH)
+
                 self.jaw_closed = not self.jaw_closed
-                GPIO.output(JAW_DOWN, self.jaw_closed)
-                GPIO.output(JAW_UP, not self.jaw_closed)
                 print('rising, jaw_closed : ', self.jaw_closed)
 
         if GPIO.input(BTN_EMERGENCY):
@@ -212,7 +217,7 @@ class MachiningInterruption(QMainWindow, Screen):
         super(MachiningInterruption, self).__init__()
         loadUi('./Views/MachiningInterruption.ui', self)
 
-    def update_progressBar(self, v):
+    def update_progressBar(self, pourcentage):
         pourcentage += 1
         if pourcentage <= 100:
             self.progressBar.setValue(pourcentage)
