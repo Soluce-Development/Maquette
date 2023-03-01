@@ -49,19 +49,22 @@ toggle = True
 
 def toggle_jaw(pin):
     """Open/close the jaw."""
+
     global toggle
 
-    if toggle:
-        GPIO.output(LED_EMERGENCY, GPIO.HIGH)
-        sleep(2)
-        GPIO.output(LED_EMERGENCY, GPIO.LOW)
+    if GPIO.input(SENSOR_PEDAL):
 
-    else:
-        GPIO.output(LED_MACHINING, GPIO.HIGH)
-        sleep(2)
-        GPIO.output(LED_MACHINING, GPIO.LOW)
+        if toggle:
+            GPIO.output(LED_EMERGENCY, GPIO.HIGH)
+            sleep(0.1)
+            GPIO.output(LED_EMERGENCY, GPIO.LOW)
 
-    toggle = not toggle
+        else:
+            GPIO.output(LED_MACHINING, GPIO.HIGH)
+            sleep(0.1)
+            GPIO.output(LED_MACHINING, GPIO.LOW)
+
+        toggle = not toggle
 
         # GPIO.output(JAW_DOWN, GPIO.HIGH)
 
