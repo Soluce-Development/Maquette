@@ -51,7 +51,6 @@ toggle = True
 def toggle_jaw(pin):
     """Open/close the jaw."""
     global toggle
-    toggle = not toggle
 
     if toggle:
         GPIO.output(LED_EMERGENCY, GPIO.HIGH)
@@ -59,11 +58,11 @@ def toggle_jaw(pin):
         GPIO.output(LED_EMERGENCY, GPIO.LOW)
 
     else:
-        pass
-
         GPIO.output(LED_MACHINING, GPIO.HIGH)
         sleep(2)
         GPIO.output(LED_MACHINING, GPIO.LOW)
+
+    toggle = not toggle
 
         # GPIO.output(JAW_DOWN, GPIO.HIGH)
 
