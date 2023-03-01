@@ -7,6 +7,7 @@ import RPi.GPIO as GPIO
 from utils.dataManager import update_data, get_datas
 from Constants import *
 
+
 class Screen(QWidget):
     """Parent class of every screen."""
 
@@ -90,7 +91,7 @@ class ProgramsList(QMainWindow, Screen):
         self.jaw_closed = False
         self.text_choose_program.setText("")
 
-        GPIO.add_event_detect(SENSOR_PEDAL, GPIO.RISING)
+        GPIO.add_event_detect(SENSOR_PEDAL, GPIO.BOTH)
 
     def handle_navigation(self):
 
@@ -116,10 +117,11 @@ class ProgramsList(QMainWindow, Screen):
     def handle_error_messages(self):
 
         if GPIO.event_detected(SENSOR_PEDAL):
-            self.jaw_closed = not self.jaw_closed
-            GPIO.output(JAW_DOWN, self.jaw_closed)
-            GPIO.output(JAW_UP, not self.jaw_closed)
-            print('detected')
+            if GPIO.input(SENSOR_PEDAL):
+                self.jaw_closed = not self.jaw_closed
+                GPIO.output(JAW_DOWN, self.jaw_closed)
+                GPIO.output(JAW_UP, not self.jaw_closed)
+                print('rising, jaw_closed : ', self.jaw_closed)
 
         if GPIO.input(BTN_EMERGENCY):
             self.text_emergency.setText("Arrêt d'urgence enclenché, impossible d'usiner")
