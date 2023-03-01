@@ -46,23 +46,24 @@ def toggle_led_emergency(pin):
 
 
 toggledd = True
-
-
 def toggle_jaw(pin):
     """Open/close the jaw."""
 
     if GPIO.input(SENSOR_PEDAL):
-        sleep(1.5)
+        sleep(0.5)
 
     else:
-
         global toggledd
         print('before', toggledd)
 
         if toggledd:
             GPIO.output(LED_EMERGENCY, GPIO.HIGH)
+            GPIO.output(JAW_DOWN, GPIO.LOW)
+            GPIO.output(JAW_UP, GPIO.HIGH)
         else:
             GPIO.output(LED_EMERGENCY, GPIO.LOW)
+            GPIO.output(JAW_UP, GPIO.LOW)
+            GPIO.output(JAW_DOWN, GPIO.HIGH)
 
         toggledd = not toggledd
         print('after', toggledd)
