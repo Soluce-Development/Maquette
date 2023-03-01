@@ -98,6 +98,7 @@ class ProgramsList(QMainWindow, Screen):
             self.jaw_closed = not self.jaw_closed
             GPIO.output(JAW_DOWN, self.jaw_closed)
             GPIO.output(JAW_UP, not self.jaw_closed)
+            print('detected')
 
         # if GPIO.input(SENSOR_PEDAL):
         #     self.jaw_closed = True
