@@ -51,30 +51,30 @@ toggledd = True
 def toggle_jaw(pin):
     """Open/close the jaw."""
 
-    # if not GPIO.input(SENSOR_PEDAL):
+    GPIO.output(LED_MACHINING, not GPIO.input(SENSOR_PEDAL))
 
-    global toggledd
-
-    if toggledd:
-        GPIO.output(LED_MACHINING, GPIO.LOW)
-        GPIO.output(LED_EMERGENCY, GPIO.HIGH)
-        GPIO.output(JAW_UP, GPIO.HIGH)
-        # sleep(3)
-        # GPIO.output(LED_EMERGENCY, GPIO.LOW)
-        # GPIO.output(JAW_UP, GPIO.LOW)
-        toggledd = not toggledd
-        return toggledd
-
-    if not toggledd:
-        GPIO.output(LED_EMERGENCY, GPIO.LOW)
-        GPIO.output(LED_MACHINING, GPIO.HIGH)
-        GPIO.output(JAW_DOWN, GPIO.HIGH)
-        # sleep(3)
-        # GPIO.output(LED_MACHINING, GPIO.LOW)
-        # GPIO.output(JAW_DOWN, GPIO.LOW)
-        toggledd = not toggledd
-        return toggledd
-        # GPIO.output(JAW_DOWN, GPIO.HIGH)
+    # global toggledd
+    #
+    # if toggledd:
+    #     GPIO.output(LED_MACHINING, GPIO.LOW)
+    #     GPIO.output(LED_EMERGENCY, GPIO.HIGH)
+    #     GPIO.output(JAW_UP, GPIO.HIGH)
+    #     # sleep(3)
+    #     # GPIO.output(LED_EMERGENCY, GPIO.LOW)
+    #     # GPIO.output(JAW_UP, GPIO.LOW)
+    #     toggledd = not toggledd
+    #     return toggledd
+    #
+    # if not toggledd:
+    #     GPIO.output(LED_EMERGENCY, GPIO.LOW)
+    #     GPIO.output(LED_MACHINING, GPIO.HIGH)
+    #     GPIO.output(JAW_DOWN, GPIO.HIGH)
+    #     # sleep(3)
+    #     # GPIO.output(LED_MACHINING, GPIO.LOW)
+    #     # GPIO.output(JAW_DOWN, GPIO.LOW)
+    #     toggledd = not toggledd
+    #     return toggledd
+    #     # GPIO.output(JAW_DOWN, GPIO.HIGH)
 
 
 # --- Add events ---
