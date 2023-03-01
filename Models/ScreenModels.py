@@ -87,13 +87,14 @@ class ProgramsList(QMainWindow, Screen):
         self.btn_start.clicked.connect(self.handle_navigation)
 
         self.program_chosen = False
+        self.enabled = False
         self.text_choose_program.setText("")
 
     def handle_navigation(self):
-        if self.program_chosen:
+        if self.program_chosen and self.enabled:
             if not GPIO.input(BTN_START):
                 self.navigation('Machining')
-        else:
+        elif not self.program_chosen:
             self.text_choose_program.setText("Veuillez choisir un programme")
 
         QtCore.QTimer.singleShot(10, self.handle_navigation)
@@ -112,9 +113,11 @@ class ProgramsList(QMainWindow, Screen):
 
         if not GPIO.input(BTN_EMERGENCY) and not GPIO.input(SENSOR_DOOR):
             self.btn_start.setEnabled(True)
+            self.enabled = True
 
         else:
             self.btn_start.setEnabled(False)
+            self.enabled = False
 
         QtCore.QTimer.singleShot(10, self.handle_error_messages)
 
