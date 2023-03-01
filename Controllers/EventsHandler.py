@@ -43,7 +43,11 @@ def toggle_led_emergency(pin):
 
 def toggle_jaw(pin):
     """Open/close the jaw."""
-    GPIO.output(ACTUATOR_JAW, not GPIO.input(ACTUATOR_JAW))
+    # GPIO.output(ACTUATOR_JAW, not GPIO.input(ACTUATOR_JAW))
+    if GPIO.input(SENSOR_PEDAL):
+        GPIO.output(LED_EMERGENCY, GPIO.HIGH)
+    else:
+        GPIO.output(LED_EMERGENCY, GPIO.LOW)
 
 
 # --- Add events ---
@@ -52,7 +56,7 @@ def initial_events():
     # pass
     # open_door(BTN_DOOR)
     # toggle_led_door(SENSOR_DOOR)
-    # toggle_jaw(SENSOR_PEDAL)
+    toggle_jaw(SENSOR_PEDAL)
     toggle_led_emergency(BTN_EMERGENCY)
 
 
@@ -61,4 +65,4 @@ def add_events():
     # GPIO.add_event_detect(BTN_DOOR, GPIO.BOTH, callback=open_door)
     GPIO.add_event_detect(BTN_EMERGENCY, GPIO.BOTH, callback=toggle_led_emergency)
     # GPIO.add_event_detect(SENSOR_DOOR, GPIO.BOTH, callback=toggle_led_door, bouncetime=10)
-    # GPIO.add_event_detect(SENSOR_PEDAL, GPIO.RISING, callback=toggle_jaw, bouncetime=100)
+    GPIO.add_event_detect(SENSOR_PEDAL, GPIO.RISING, callback=toggle_jaw, bouncetime=100)
