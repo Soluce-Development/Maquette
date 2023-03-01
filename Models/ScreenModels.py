@@ -84,7 +84,7 @@ class ProgramsList(QMainWindow, Screen):
         self.btn_prog2.clicked.connect(lambda: self.program_selection_handler(self.btn_prog2))
         self.btn_prog3.clicked.connect(lambda: self.program_selection_handler(self.btn_prog3))
 
-        self.btn_start.clicked.connect(self.handle_navigation)
+        # self.btn_start.clicked.connect(self.handle_navigation)
 
         self.program_chosen = False
         self.enabled = False
@@ -112,11 +112,11 @@ class ProgramsList(QMainWindow, Screen):
             self.text_door.setText("")
 
         if not GPIO.input(BTN_EMERGENCY) and not GPIO.input(SENSOR_DOOR):
-            self.btn_start.setEnabled(True)
+            # self.btn_start.setEnabled(True)
             self.enabled = True
 
         else:
-            self.btn_start.setEnabled(False)
+            # self.btn_start.setEnabled(False)
             self.enabled = False
 
         QtCore.QTimer.singleShot(10, self.handle_error_messages)
