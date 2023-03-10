@@ -31,7 +31,7 @@
      <x>10</x>
      <y>10</y>
      <width>456</width>
-     <height>291</height>
+     <height>296</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -257,24 +257,6 @@
          </size>
         </property>
        </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn_stop">
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-		background-color:  red;
-	color: #fff;
-	font-size: 25pt;
-	border-radius: 10px;
-	padding: 40px;
-}
-
-</string>
-        </property>
-        <property name="text">
-         <string>STOP</string>
-        </property>
-       </widget>
       </item>
       <item>
        <spacer name="horizontalSpacer_3">
