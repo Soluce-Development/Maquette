@@ -100,6 +100,7 @@ class ProgramsList(QMainWindow, Screen):
         if self.program_chosen and self.enabled:
             if not GPIO.input(BTN_START):
                 self.navigation('Machining')
+                GPIO.output(LED_MACHINING, GPIO.HIGH)
         elif not self.program_chosen:
             self.text_choose_program.setText("Veuillez choisir un programme")
 
@@ -191,7 +192,6 @@ class Machining(QMainWindow, Screen):
             get_datas("duration")
             interval = int(int(get_datas("duration")) / 100)
             QTimer.singleShot(interval, lambda: self.program_timer(sec))
-            GPIO.output(LED_MACHINING, GPIO.HIGH)
         else:
             self.navigation('ProgramsList')
             GPIO.output(LED_MACHINING, GPIO.LOW)
