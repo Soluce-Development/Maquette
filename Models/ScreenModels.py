@@ -134,11 +134,9 @@ class ProgramsList(QMainWindow, Screen):
             self.text_door.setText("")
 
         if not GPIO.input(BTN_EMERGENCY) and not GPIO.input(SENSOR_DOOR):
-            # self.btn_start.setEnabled(True)
             self.enabled = True
 
         else:
-            # self.btn_start.setEnabled(False)
             self.enabled = False
 
         QtCore.QTimer.singleShot(10, self.handle_error_messages)
@@ -173,8 +171,6 @@ class Machining(QMainWindow, Screen):
 
         self.stopped = False
 
-        # self.btn_stop.clicked.connect(self.program_stopped)
-
     def program_timer(self, sec):
 
         if GPIO.input(BTN_EMERGENCY):
@@ -195,11 +191,6 @@ class Machining(QMainWindow, Screen):
         else:
             self.navigation('ProgramsList')
             GPIO.output(LED_MACHINING, GPIO.LOW)
-
-    # def program_stopped(self):
-    #     self.stopped = True
-    #     self.navigation('MachiningInterruption')
-    #     GPIO.output(LED_MACHINING, GPIO.LOW)
 
 
 class MachiningInterruption(QMainWindow, Screen):
