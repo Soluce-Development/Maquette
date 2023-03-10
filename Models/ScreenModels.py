@@ -110,17 +110,13 @@ class ProgramsList(QMainWindow, Screen):
         if GPIO.event_detected(SENSOR_PEDAL):
             if not GPIO.input(SENSOR_PEDAL):
                 if self.jaw_closed:
-                    GPIO.output(LED_MACHINING, GPIO.LOW)
                     GPIO.output(JAW_UP, GPIO.LOW)
                     GPIO.output(JAW_DOWN, GPIO.HIGH)
-                    print("opening ...")
                     sleep(3)
                     GPIO.output(JAW_DOWN, GPIO.LOW)
                 else:
-                    GPIO.output(LED_MACHINING, GPIO.HIGH)
                     GPIO.output(JAW_DOWN, GPIO.LOW)
                     GPIO.output(JAW_UP, GPIO.HIGH)
-                    print("closing ...")
                     QtCore.QThread.sleep(3)
                     GPIO.output(JAW_UP, GPIO.LOW)
 
