@@ -99,7 +99,7 @@ def initial_events():
     pass
     # open_door(BTN_DOOR)
     # toggle_led_door(SENSOR_DOOR)
-    # toggle_jaw(SENSOR_PEDAL)
+    toggle_jaw(SENSOR_PEDAL)
     toggle_led_emergency(BTN_EMERGENCY)
 
 
