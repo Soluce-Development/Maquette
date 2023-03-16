@@ -12,10 +12,10 @@
     <img src="images/logo.png" alt="Logo" width="150" height="80">
   </a>
 
-  <h3 align="center">Projet Tour Commande numérique</h3>
+  <h3 align="center">Démonstrateur de tour à commande numérique</h3>
 
   <p align="center">
-    Projet de réalisation d'un POC 
+    Projet de réalisation d'un PoC 
     <br />
 
   </p>
@@ -37,28 +37,13 @@
 
 ### CREE AVEC :
 
-Python pour le back et Qt creator pour le front
+Python pour la logique et Qt Creator pour le design des interfaces.
 
 
-
-
-
-
-
-<!-- GETTING STARTED -->
 ## Lancement de l'application
 
 
-
-### Les pré-requis
-
-Téléchargement des librairies
-  ```sh
-  pip install -r requirement.txt
-  ```
-
 ### Installation / Lancement de l'app 
-
 
 
 1. Cloner le projet
@@ -74,36 +59,20 @@ Téléchargement des librairies
    python main.py
    ```
 
+## Utilisation
+
+Programme réalisé dans le cadre du développement d'un PoC de démonstrateur de tour numérique.
 
 
-
-<!-- USAGE EXAMPLES -->
-## Utlisation
-
-Programme réalisé dans le cadre du developpement d'un POC démonstrateur de tour numérique.
-_Pour plus d'informations [Contact](https://codicam.com)_
-
-
-
-
-
-
-
-
-
-<!-- LICENSE -->
 ## License
 
 Distribué par l'association Codicam - ICAM. Nous contacter pour plus de details.
 
 
-
-<!-- CONTACT -->
 ## Contact
 
-Codicam- codicam.com
+Codicam - [codicam.com](https://codicam.com)
 
-Project Link: [https://github.com/Soluce-Development/Maquette](https://github.com/Soluce-Development/Maquette)
 
 
 
