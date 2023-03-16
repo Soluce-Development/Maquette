@@ -95,7 +95,7 @@ _Below is an example of how you can instruct your audience on installing and set
 ## Utlisation
 
 Programme réalisé dans le cadre du developpement d'un POC démonstrateur de tour numérique.
-_Pour plus d'informations [Contact](codicam.toulouse@gmail.com)_
+_Pour plus d'informations [Contact](https://codicam.com)_
 
 
 
