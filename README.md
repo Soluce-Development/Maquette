@@ -32,17 +32,6 @@
     <img src="images/ttt.JPG" alt="Logo" width="300" height="200">
 </div>
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
-
 
 
 
@@ -59,33 +48,30 @@ Python pour le back et Qt creator pour le front
 <!-- GETTING STARTED -->
 ## Lancement de l'application
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+### Les pré-requis
+
+Téléchargement des librairies
   ```sh
-  npm install npm@latest -g
+  pip install -r requirement.txt
   ```
 
-### Installation
+### Installation / Lancement de l'app 
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+
+1. Cloner le projet
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/Soluce-Development/Maquette
    ```
-3. Install NPM packages
+2. installation des librairies
    ```sh
-   npm install
+    pip install -r requirement.txt
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. Lancer le projet `main.py`
+   ```py
+   python main.py
    ```
 
 
