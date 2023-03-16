@@ -29,7 +29,7 @@
 ## LE PROJET
 
 <div align="center">
-    <img src="images/ttt.JPG" alt="Logo" width="150" height="80">
+    <img src="images/ttt.JPG" alt="Logo" width="300" height="200">
 </div>
 
 There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
